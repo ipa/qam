@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 np.seterr(divide='ignore', invalid='ignore')
-cmap = [(1, 115, 178), (222, 143, 5), (2, 158, 115)] # seaborn.color_palette("colorblind")
+cmap = [(213/255.0, 94/255.0, 0/255.0), (236/255.0, 225/255.0, 51/255.0), (2/255.0, 158/255.0, 115/255.0)]
 
 def plot_histogram_surface_distances(pat_name, lesion_id, output_file, distance_map, title, print_case_details=True, output_vector_format=False):
     """
@@ -63,10 +63,10 @@ def plot_histogram_surface_distances(pat_name, lesion_id, output_file, distance_
     # %% iterate through the bins to change the colors of the patches bases on the range [mm]
     for b, p, col_val in zip(bins, patches, col_height):
         if b < 0 and col_val > 0:
-            plt.setp(p, 'facecolor', cmap[3],
+            plt.setp(p, 'facecolor', cmap[0],
                      label='Ablation Margin ' + r'$x < 0$' + 'mm :' + " %.2f" % sum_perc_nonablated + '%')
         elif 0 <= b < 5 and col_val > 0:
-            plt.setp(p, 'facecolor', cmap[8],
+            plt.setp(p, 'facecolor', cmap[1],
                      label='Ablation Margin ' + r'$0 \leq x < 5$' + 'mm: ' + "%.2f" % sum_perc_insuffablated + '%')
         elif b >= 5 and col_val > 0:
             plt.setp(p, 'facecolor', cmap[2],
