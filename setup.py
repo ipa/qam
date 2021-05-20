@@ -1,7 +1,17 @@
 import setuptools
+from pathlib import Path
 
-with open("README.md", "r") as fh:
+source_root = Path(".")
+
+with open(source_root / "README.md", "r") as fh:
     long_description = fh.read()
+
+version = "0.2.0"
+
+with open(source_root / "qam" / "version.py", "w") as fh:
+    fh.writelines([
+        f'__version__ = "{version}" \n '
+    ])
 
 setuptools.setup(
     name="quantitative-ablation-margin",
