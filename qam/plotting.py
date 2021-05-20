@@ -9,15 +9,11 @@ from collections import OrderedDict
 import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
-import seaborn as sns
-
-matplotlib.use('Agg')
 
 np.seterr(divide='ignore', invalid='ignore')
-cmap = sns.color_palette("colorblind")  # colorblind friendly palette
+cmap = [(1, 115, 178), (222, 143, 5), (2, 158, 115)] # seaborn.color_palette("colorblind")
 
-
-def plot_histogram_surface_distances(pat_name, lesion_id, output_file, distance_map, title, print_case_details=True):
+def plot_histogram_surface_distances(pat_name, lesion_id, output_file, distance_map, title, print_case_details=True, output_vector_format=False):
     """
 
     Plots and saves the surface distances (traffic-light color schemes) between tumor and ablation.
@@ -103,9 +99,11 @@ def plot_histogram_surface_distances(pat_name, lesion_id, output_file, distance_
         plt.title(title, fontsize=fontsize)
 
     ax.set_rasterized(True)
-    plt.savefig(output_file, dpi=600, bbox_inches='tight')
-    plt.savefig(output_file + '.svg', dpi=600)
-    plt.savefig(output_file + '.eps', dpi=600)
+    if output_file is not None:
+        plt.savefig(output_file, dpi=600, bbox_inches='tight')
+        if output_vector_format:
+            plt.savefig(output_file + '.svg', dpi=600)
+            plt.savefig(output_file + '.eps', dpi=600)
 
     plt.close()
 

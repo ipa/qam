@@ -15,7 +15,7 @@ with open(source_root / "qam" / "version.py", "w") as fh:
 
 setuptools.setup(
     name="quantitative-ablation-margin",
-    version="0.2.0",
+    version="0.2.1",
     author="Raluca M. Sandu",
     author_email="raluca-sandu@rwth-aachen.de",
     description="Calculation and visualization of ablation margins",
@@ -30,10 +30,11 @@ setuptools.setup(
         "openpyxl>=3.0.5",
         "pandas>=1.1",
         "scipy>=1.5",
-        "seaborn>=0.11",
-        "vtk>=9.0.1",
         "xlrd>=1.2.0"
     ],
+    extras_require = {
+        '3d':  ["vtk>=9.0.1"]
+    },
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: GPL :: 3 ",
