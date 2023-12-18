@@ -62,13 +62,13 @@ def compute_distances(mask_gt, mask_pred, exclusion_zone, spacing_mm, connectivi
     if crop:
         if exclusion_zone is not None:
             bbox_min, bbox_max = compute_bounding_box(mask_gt, mask_pred, exclusion_zone)
-            mask_gt = crop_mask(mask_gt, bbox_min, bbox_max).astype(np.bool)
-            mask_pred = crop_mask(mask_pred, bbox_min, bbox_max).astype(np.bool)
-            exclusion_zone = crop_mask(exclusion_zone, bbox_min, bbox_max).astype(np.bool)
+            mask_gt = crop_mask(mask_gt, bbox_min, bbox_max).astype(bool)
+            mask_pred = crop_mask(mask_pred, bbox_min, bbox_max).astype(bool)
+            exclusion_zone = crop_mask(exclusion_zone, bbox_min, bbox_max).astype(bool)
         else:
             bbox_min, bbox_max = compute_bounding_box(mask_gt, mask_pred, mask_gt)
-            mask_gt = crop_mask(mask_gt, bbox_min, bbox_max).astype(np.bool)
-            mask_pred = crop_mask(mask_pred, bbox_min, bbox_max).astype(np.bool)
+            mask_gt = crop_mask(mask_gt, bbox_min, bbox_max).astype(bool)
+            mask_pred = crop_mask(mask_pred, bbox_min, bbox_max).astype(bool)
 
     border_inside = ndimage.binary_erosion(mask_gt, structure=ndimage.generate_binary_structure(3, connectivity))
     borders_gt = mask_gt ^ border_inside
